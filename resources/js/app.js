@@ -15,7 +15,8 @@ function init() {
   roundScore = 0;
   gamePlaying = true;
 
-  document.querySelector('.dice').style.display = 'none';
+  document.querySelector('.dice-1').style.display = 'none';
+  document.querySelector('.dice-2').style.display = 'none';
 
   document.getElementById('score-0').textContent = '0';
   document.getElementById('score-1').textContent = '0';
@@ -41,10 +42,11 @@ function nextPlayer() {
   document.querySelector('.player-0-panel').classList.toggle('active');
   document.querySelector('.player-1-panel').classList.toggle('active');
 
-  document.querySelector('.dice').style.display = 'none';
+  document.querySelector('.dice-1').style.display = 'none';
+  document.querySelector('.dice-2').style.display = 'none';
 }
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, lastDice;
 
 init();
 
@@ -58,7 +60,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     var dice = Math.floor(Math.random() * 6) + 1;
 
     // 2. Display the result
-    var diceDOM = document.querySelector('.dice');
+    var diceDOM = document.querySelector('.dice-1');
 
     diceDOM.src = './resources/images/dice-' + dice + '.png';
     diceDOM.style.display = 'block';
@@ -67,11 +69,19 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     if (dice === 1) {
       // Next score
       nextPlayer();
+    } else if (lastDice === 6 && dice === 6) {
+      // Player looses his ENTIRE score when he rolls two 6 in a row
+      scores[activePlayer] = 0;
+      document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
     } else {
       // Add score
       roundScore += dice;
       document.getElementById('current-' + activePlayer).textContent = roundScore;
+      // The last Die rolled
+      lastDice = dice;
+      console.log(dice);
     }
+    
   } 
 });
 
@@ -85,9 +95,9 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     // Update the UI
   
     // Check if player won the game
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= document.getElementById('goalInput').value) {
       document.getElementById('name-' + activePlayer).textContent = 'Winner!';
-      document.querySelector('.dice').style.display = 'none';
+      document.querySelector('.dice-1').style.display = 'none';
       document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
       document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
       

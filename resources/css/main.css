@@ -132,10 +132,18 @@ i {
 .btn-hold {
   top: 467px; }
 
-.dice {
+.dice-1 {
   position: absolute;
   left: 50%;
-  top: 178px;
+  top: 140px;
+  transform: translateX(-50%);
+  height: 100px;
+  box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1); }
+
+.dice-2 {
+  position: absolute;
+  left: 50%;
+  bottom: 240px;
   transform: translateX(-50%);
   height: 100px;
   box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.1); }
@@ -146,3 +154,22 @@ i {
 .winner .player-name {
   font-weight: 300;
   color: #EB4D4D; }
+
+.goalInput {
+  width: 80px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #EB4D4D;
+  background-color: white;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  outline: none;
+  font-size: 17px;
+  text-align: center;
+  transition: all .2s; }
+  .goalInput:hover, .goalInput:focus {
+    width: 100px;
+    height: 45px;
+    color: #555; }

@@ -60,7 +60,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     // 2. Display the result
     var diceDOM = document.querySelector('.dice');
 
-    diceDOM.src = 'dice-' + dice + '.png';
+    diceDOM.src = './resources/images/dice-' + dice + '.png';
     diceDOM.style.display = 'block';
     
     // 3. Update the round score IF the rolled number is equal to 1

@@ -1,0 +1,22 @@
+{
+  "name": "pig-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass ./resources/sass/main.scss ./resources/css/main.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenACZ/Pig-Game.git"
+  },
+  "author": "Steven Coaila <scoailazaa@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StevenACZ/Pig-Game/issues"
+  },
+  "homepage": "https://github.com/StevenACZ/Pig-Game#readme",
+  "devDependencies": {
+    "node-sass": "^4.13.1"
+  }
+}

@@ -138,22 +138,20 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice-1 {
+.dice {
   position: absolute;
   left: 50%;
-  top: 140px;
-  transform: translateX(-50%);
   height: 100px;
   box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
-}
+  transform: translateX(-50%);
 
-.dice-2 {
-  position: absolute;
-  left: 50%;
-  bottom: 240px;
-  transform: translateX(-50%);
-  height: 100px;
-  box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+  &-1 {
+    top: 140px;
+  }
+  
+  &-2 {
+    bottom: 240px;
+  }
 }
 
 .winner { background-color: #f7f7f7; }

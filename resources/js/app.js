@@ -46,7 +46,7 @@ function nextPlayer() {
   document.querySelector('.dice-2').style.display = 'none';
 }
 
-var scores, roundScore, activePlayer, gamePlaying, lastDice;
+var scores, roundScore, activePlayer, gamePlaying, lastDice_1, lastDice_2;
 
 init();
 
@@ -57,29 +57,34 @@ document.querySelector('.btn-new').addEventListener('click', init);
 document.querySelector('.btn-roll').addEventListener('click', function() {
   if (gamePlaying) {
     // 1. Random rumber
-    var dice = Math.floor(Math.random() * 6) + 1;
+    var dice_1 = Math.floor(Math.random() * 6) + 1;
+    var dice_2 = Math.floor(Math.random() * 6) + 1;
 
     // 2. Display the result
-    var diceDOM = document.querySelector('.dice-1');
+    var dice_1_DOM = document.querySelector('.dice-1');
+    var dice_2_DOM = document.querySelector('.dice-2');
 
-    diceDOM.src = './resources/images/dice-' + dice + '.png';
-    diceDOM.style.display = 'block';
+    dice_1_DOM.src = './resources/images/dice-' + dice_1 + '.png';
+    dice_1_DOM.style.display = 'block';
+
+    dice_2_DOM.src = './resources/images/dice-' + dice_2 + '.png';
+    dice_2_DOM.style.display = 'block';
     
     // 3. Update the round score IF the rolled number is equal to 1
-    if (dice === 1) {
+    if (dice_1 === 1 || dice_2 == 1) {
       // Next score
       nextPlayer();
-    } else if (lastDice === 6 && dice === 6) {
+    } else if (lastDice_1 === 6 && dice_1 === 6 || lastDice_2 === 6 && dice_2 === 6) {
       // Player looses his ENTIRE score when he rolls two 6 in a row
       scores[activePlayer] = 0;
       document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
     } else {
       // Add score
-      roundScore += dice;
+      roundScore += dice_1 + dice_2;
       document.getElementById('current-' + activePlayer).textContent = roundScore;
       // The last Die rolled
-      lastDice = dice;
-      console.log(dice);
+      lastDice_1 = dice_1;
+      lastDice_2 = dice_2;
     }
     
   } 
@@ -98,6 +103,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     if (scores[activePlayer] >= document.getElementById('goalInput').value) {
       document.getElementById('name-' + activePlayer).textContent = 'Winner!';
       document.querySelector('.dice-1').style.display = 'none';
+      document.querySelector('.dice-2').style.display = 'none';
       document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
       document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
       
